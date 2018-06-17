@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 	styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-	title = 'app';
+	title = 'Stock Explorer';
 }
 
 import metadata from 'app.module.metadata';
