@@ -8,3 +8,6 @@ const routes: Routes = [];
 	exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+import metadata from 'app.module.metadata';
+metadata.imports.push(AppRoutingModule);

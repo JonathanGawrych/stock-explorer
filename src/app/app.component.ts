@@ -8,3 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
 	title = 'app';
 }
+
+import metadata from 'app.module.metadata';
+metadata.declarations.push(AppComponent);
+metadata.bootstrap.push(AppComponent);
