@@ -122,5 +122,10 @@
 			}
 		}
 	},
-	"defaultProject": "stock-explorer"
+	"defaultProject": "stock-explorer",
+	"cli": {
+		"warnings": {
+			"typescriptMismatch": false
+		}
+	}
 }
