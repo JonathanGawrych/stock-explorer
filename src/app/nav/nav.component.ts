@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import 'parts/logo/logo.component';
+import 'parts/benchmarks/benchmarks.component';
+import 'parts/search/search.component';
 
 @Component({
 	selector: 'app-nav',
