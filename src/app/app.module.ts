@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import metadata from 'app.module.metadata';
+import { default as metadata, clean } from 'app.module.metadata';
 
 import 'app.component';
 import 'app-routing.module';
 
-@NgModule(metadata)
+@NgModule(clean(metadata))
 export class AppModule { }
 
