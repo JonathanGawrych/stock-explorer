@@ -8,7 +8,6 @@
 		"moduleResolution": "node",
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
-		"rootDir": "./src/app/",
 		"target": "ES2017",
 		"typeRoots": [
 			"node_modules/@types"
