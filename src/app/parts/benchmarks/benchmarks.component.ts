@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Stock } from 'iex-service';
 
 @Component({
 	selector: 'app-benchmarks',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./benchmarks.component.less']
 })
 export class BenchmarksComponent implements OnInit {
+	private static SYMBOLS = [
+		'DIA', // Dow Jones Industrial Average
+		'SPY', // S&P 500 Index
+		'QQQ', // NASDAQ-100
+	];
+
+	private stats: Promise<Stock.Previous.Response[]>;
 
 	constructor() { }
 
 	ngOnInit() {
+		this.stats = Promise.all(BenchmarksComponent.SYMBOLS.map(Stock.Previous.get));
 	}
 
 }

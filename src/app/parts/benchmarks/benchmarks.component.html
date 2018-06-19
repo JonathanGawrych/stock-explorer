@@ -1,3 +1,6 @@
-<p>
-	benchmarks works!
-</p>
+<ul>
+	<li *ngFor="let stat of stats | async">
+		<span class="symbol">{{stat.symbol}}</span>
+		<span class="change-percent">{{stat.changePercent}}</span>
+	</li>
+</ul>
