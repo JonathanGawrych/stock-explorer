@@ -18,8 +18,9 @@ export class CompanyComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		const symbol = this.route.snapshot.paramMap.get('symbol');
-		this.company = Stock.Company.get(symbol);
+		this.route.params.subscribe(params => {
+			this.company = Stock.Company.get(params.symbol);
+		});
 	}
 
 }
