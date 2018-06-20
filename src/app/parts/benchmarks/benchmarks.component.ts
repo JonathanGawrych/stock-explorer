@@ -15,8 +15,6 @@ export class BenchmarksComponent implements OnInit {
 
 	private stats: Promise<Stock.Previous.Response[]>;
 
-	constructor() { }
-
 	ngOnInit() {
 		this.stats = Promise.all(BenchmarksComponent.SYMBOLS.map(Stock.Previous.get));
 	}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import 'parts/logo/';
 import 'parts/benchmarks/';
 import 'parts/search/';
@@ -8,14 +8,7 @@ import 'parts/search/';
 	templateUrl: './nav.component.html',
 	styleUrls: ['./nav.component.less']
 })
-export class NavComponent implements OnInit {
-
-	constructor() { }
-
-	ngOnInit() {
-	}
-
-}
+export class NavComponent {}
 
 import metadata from 'app.module.metadata';
 metadata.declarations.push(NavComponent);
