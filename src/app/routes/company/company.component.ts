@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Route, ActivatedRoute } from '@angular/router';
 import { Stock } from 'iex-service';
 import 'parts/company-summary/';
+import 'parts/chart';
 
 @Component({
 	selector: 'app-company',

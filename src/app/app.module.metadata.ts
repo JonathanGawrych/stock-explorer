@@ -42,9 +42,3 @@ export function clean(oldMetadata: Interfaces.NgModule) {
 
 	return newMetadata;
 }
-
-// inject external modules
-import { BrowserModule } from '@angular/platform-browser';
-import { ChartModule } from 'angular2-highcharts';
-metadata.imports.push(BrowserModule);
-metadata.imports.push(ChartModule.forRoot(require('highcharts')));

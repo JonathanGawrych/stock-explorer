@@ -22,7 +22,7 @@
 		"@angular/router": "^6.0.3",
 		"angular2-highcharts": "^0.5.5",
 		"core-js": "^2.5.4",
-		"iex-service": "^0.4.3",
+		"iex-service": "^0.4.4",
 		"rxjs": "^6.0.0",
 		"zone.js": "^0.8.26"
 	},
