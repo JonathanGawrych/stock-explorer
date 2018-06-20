@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Stock } from 'iex-service';
 
 @Component({
 	selector: 'app-company-summary',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./company-summary.component.less']
 })
 export class CompanySummaryComponent implements OnInit {
+	private company: Promise<Stock.Company.Response>;
+
+	@Input() set symbol(value: string) {
+		this.company = Stock.Company.get(value);
+	}
 
 	constructor() { }
 
@@ -16,4 +22,3 @@ export class CompanySummaryComponent implements OnInit {
 
 import metadata from 'app.module.metadata';
 metadata.declarations.push(CompanySummaryComponent);
-

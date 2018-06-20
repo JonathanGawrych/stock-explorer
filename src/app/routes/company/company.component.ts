@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, ActivatedRoute } from '@angular/router';
 import { Stock } from 'iex-service';
+import 'parts/company-summary/';
 
 @Component({
 	selector: 'app-company',
@@ -11,7 +12,7 @@ export class CompanyComponent implements OnInit {
 	static path = (symbol: string) => ['company', symbol];
 	static route: Route = { path: 'company/:symbol', component: CompanyComponent };
 
-	private company: Promise<Stock.Company.Response>;
+	private symbol: string;
 
 	constructor(
 		private route: ActivatedRoute
@@ -19,7 +20,7 @@ export class CompanyComponent implements OnInit {
 
 	ngOnInit() {
 		this.route.params.subscribe(params => {
-			this.company = Stock.Company.get(params.symbol);
+			this.symbol = params.symbol;
 		});
 	}
 
