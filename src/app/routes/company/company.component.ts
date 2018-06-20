@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Route, ActivatedRoute } from '@angular/router';
 import { Stock } from 'iex-service';
 
 @Component({
@@ -8,6 +8,8 @@ import { Stock } from 'iex-service';
 	styleUrls: ['./company.component.less']
 })
 export class CompanyComponent implements OnInit {
+	static path = (symbol: string) => ['company', symbol];
+	static route: Route = { path: 'company/:symbol', component: CompanyComponent };
 
 	private company: Promise<Stock.Company.Response>;
 
