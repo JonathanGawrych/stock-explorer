@@ -67,7 +67,7 @@ export class SearchComponent implements OnInit {
 			}
 
 			// Sort and limit to ten items
-			let filteredAndSorted = SearchComponent.sortSymbols(filtered, searchRegex).slice(0, 10);
+			const filteredAndSorted = SearchComponent.sortSymbols(filtered, searchRegex).slice(0, 10);
 
 			// Save the top result which will be used on navigating
 			this.top = filteredAndSorted[0];
