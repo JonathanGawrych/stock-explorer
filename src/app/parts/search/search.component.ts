@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RefData } from 'iex-service';
+import { CompanyComponent } from 'routes/company';
 
 @Component({
 	selector: 'app-search',
@@ -10,8 +12,9 @@ export class SearchComponent implements OnInit {
 	private static symbols: Promise<RefData.Symbols.Response[]>;
 	private filteredSymbols: Promise<RefData.Symbols.Response[]>;
 	private input: string;
+	private top: RefData.Symbols.Response;
 
-	constructor() {}
+	constructor(private router: Router) {}
 
 	static sortSymbols(symbols: RefData.Symbols.Response[], search: RegExp) {
 		return symbols.sort((s1, s2) => {
@@ -63,9 +66,21 @@ export class SearchComponent implements OnInit {
 				Array.prototype.push.apply(filtered, filteredName);
 			}
 
-			// Sort and limit to ten items;
-			return SearchComponent.sortSymbols(filtered, searchRegex).slice(0, 10);
+			// Sort and limit to ten items
+			let filteredAndSorted = SearchComponent.sortSymbols(filtered, searchRegex).slice(0, 10);
+
+			// Save the top result which will be used on navigating
+			this.top = filteredAndSorted[0];
+
+			return filteredAndSorted;
 		});
+	}
+
+	inputSubmit() {
+		if (this.top == null)
+			return;
+
+		this.router.navigate(CompanyComponent.path(this.top.symbol));
 	}
 
 	ngOnInit() {

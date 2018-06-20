@@ -1,4 +1,4 @@
-<input type="text" list="symbols" (input)="inputChange()" [(ngModel)]="input" />
+<input type="text" list="symbols" (input)="inputChange()" (keyup.enter)="inputSubmit()" [(ngModel)]="input" />
 <datalist id="symbols">
 	<option *ngFor="let symbol of filteredSymbols | async" [value]="symbol.symbol">{{symbol.name | slice:0:30}}</option>
 </datalist>
