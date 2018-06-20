@@ -19,21 +19,21 @@ export class SearchComponent implements OnInit {
 			let s2Search = s2.symbol.search(search);
 
 			// If neither were found, fall back to company name
-			if (s1Search == -1 && s2Search == -1) {
+			if (s1Search === -1 && s2Search === -1) {
 				s1Search = s1.name.search(search);
 				s2Search = s2.name.search(search);
 			}
 
 			// If s2Search doesn't match, make s1 < s2
-			if (s2Search == -1)
+			if (s2Search === -1)
 				return -1;
 
 			// If s1Search doesn't match, make s2 < s1
-			if (s1Search == -1)
+			if (s1Search === -1)
 				return 1;
 
 			// If the position match, go alphabetical
-			if (s1Search - s2Search == 0)
+			if (s1Search - s2Search === 0)
 				return s1.symbol.localeCompare(s2.symbol);
 
 			// The better match is closer to the beginning
@@ -45,18 +45,18 @@ export class SearchComponent implements OnInit {
 		this.filteredSymbols = SearchComponent.symbols.then(symbols => {
 			// Search for the user's input
 			// https://stackoverflow.com/a/3561711/1248889
-			let userInputEscaped = this.input.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-			let searchRegex = new RegExp(this.input, "i");
+			const userInputEscaped = this.input.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+			const searchRegex = new RegExp(this.input, 'i');
 
 			// Only show results that match
-			let filtered = symbols.filter(symbol => symbol.symbol.search(searchRegex) != -1);
+			const filtered = symbols.filter(symbol => symbol.symbol.search(searchRegex) !== -1);
 
 			// If we have less than 10 results, add company name results
 			if (filtered.length < 10) {
 				// Limit to filters that match and are not already in the list
-				let filteredName = symbols.filter(symbol => {
-					return symbol.name.search(searchRegex) != -1
-						&& filtered.indexOf(symbol) == -1;
+				const filteredName = symbols.filter(symbol => {
+					return symbol.name.search(searchRegex) !== -1
+						&& filtered.indexOf(symbol) === -1;
 				});
 
 				// Concatinate the name filtered list into the filtered list

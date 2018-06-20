@@ -18,31 +18,31 @@ import { BrowserModule } from '@angular/platform-browser';
 metadata.imports.push(BrowserModule);
 
 export function clean(oldMetadata: Interfaces.NgModule) {
-	let metadata: Interfaces.NgModule = {};
+	const newMetadata: Interfaces.NgModule = {};
 
 	if (oldMetadata.providers.length > 0)
-		metadata.providers = [...new Set(oldMetadata.providers)];
+		newMetadata.providers = [...new Set(oldMetadata.providers)];
 
 	if (oldMetadata.declarations.length > 0)
-		metadata.declarations = [...new Set(oldMetadata.declarations)];
+		newMetadata.declarations = [...new Set(oldMetadata.declarations)];
 
 	if (oldMetadata.imports.length > 0)
-		metadata.imports = [...new Set(oldMetadata.imports)];
+		newMetadata.imports = [...new Set(oldMetadata.imports)];
 
 	if (oldMetadata.exports.length > 0)
-		metadata.exports = [...new Set(oldMetadata.exports)];
+		newMetadata.exports = [...new Set(oldMetadata.exports)];
 
 	if (oldMetadata.entryComponents.length > 0)
-		metadata.entryComponents = [...new Set(oldMetadata.entryComponents)];
+		newMetadata.entryComponents = [...new Set(oldMetadata.entryComponents)];
 
 	if (oldMetadata.bootstrap.length > 0)
-		metadata.bootstrap = [...new Set(oldMetadata.bootstrap)];
+		newMetadata.bootstrap = [...new Set(oldMetadata.bootstrap)];
 
 	if (oldMetadata.schemas.length > 0)
-		metadata.schemas = [...new Set(oldMetadata.schemas)];
+		newMetadata.schemas = [...new Set(oldMetadata.schemas)];
 
 	if (oldMetadata.id != null)
-		metadata.id = oldMetadata.id;
+		newMetadata.id = oldMetadata.id;
 
-	return metadata;
+	return newMetadata;
 }
