@@ -13,10 +13,6 @@ const metadata: Interfaces.NgModule = {
 
 export default metadata;
 
-// inject external modules
-import { BrowserModule } from '@angular/platform-browser';
-metadata.imports.push(BrowserModule);
-
 export function clean(oldMetadata: Interfaces.NgModule) {
 	const newMetadata: Interfaces.NgModule = {};
 
@@ -46,3 +42,9 @@ export function clean(oldMetadata: Interfaces.NgModule) {
 
 	return newMetadata;
 }
+
+// inject external modules
+import { BrowserModule } from '@angular/platform-browser';
+import { ChartModule } from 'angular2-highcharts';
+metadata.imports.push(BrowserModule);
+metadata.imports.push(ChartModule.forRoot(require('highcharts')));
