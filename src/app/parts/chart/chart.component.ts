@@ -2,16 +2,20 @@ import { Component, Input } from '@angular/core';
 import { Stock } from 'iex-service';
 
 interface HighchartOHLCSeries {
-	[0]: number; // timestamp
-	[1]: number; // open
-	[2]: number; // high
-	[3]: number; // low
-	[4]: number; // close
+	x: number, // timestamp
+	open: number,
+	high: number,
+	low: number,
+	close: number,
+	name?: string,
+	color?: string
 }
 
 interface HighchartVolume {
-	[0]: number; // timestamp
-	[1]: number; // volume
+	x: number, // timestamp
+	y: number, // volumn
+	name?: string,
+	color?: string
 }
 
 @Component({
@@ -30,48 +34,60 @@ export class ChartComponent {
 		Stock.Chart.get(this._symbol, '5y')
 		.then((chartData: Stock.Chart.MultiDay.Response[]) => {
 			this.ohlcSeries = ChartComponent.iexToHighchartOHLC(chartData);
-			this.volume = ChartComponent.iexToHighchartVolume(chartData);
+			this.volume = ChartComponent.iexToHighchartVolume(chartData, this.ohlcSeries);
 			this.updateOptions();
 		});
 	}
 
 	/**
 	 * IEX has two different date formats depending on 1d or not 1d
-	 * Convert these to a timestamp where the exchanges are (EST)
+	 * Convert these to a readable string where the exchange is (EST)
 	 */
-	static iexDateToTimestamp(iexDate: string, iexMinute?: string)
-	{
+	static iexDateToReadableString(iexDate: string, iexMinute?: string) {
 		// convert from "YYYYMMDD", "HH:MM" to timestamp
 		if (iexMinute != null)
-			return Date.parse(iexDate.substring(0,4) + '-'
-							+ iexDate.substring(4,6) + '-'
-							+ iexDate.substring(6,8) + ' '
-							+ iexMinute + ' EST');
+			return iexDate.substring(0,4) + '-'
+			     + iexDate.substring(4,6) + '-'
+			     + iexDate.substring(6,8) + ' '
+			     + iexMinute + ' EST';
 
 		// convert from "YYYY-MM-DD"
-		return Date.parse(iexDate + ' EST');
+		return iexDate + ' EST';
 	}
 
 	static iexToHighchartOHLC(iex: (Stock.Chart.MultiDay.Response | Stock.Chart.OneDay.Response)[]) : HighchartOHLCSeries[]
 	{
-		return iex.map((response): HighchartOHLCSeries => [
-			ChartComponent.iexDateToTimestamp(response.date, response.minute),
-			response.open,
-			response.high,
-			response.low,
-			response.close
-		]);
+		return iex.map((response): HighchartOHLCSeries => {
+			let date = ChartComponent.iexDateToReadableString(response.date, response.minute);
+			return {
+				x: Date.parse(date),
+				open: response.open,
+				high: response.high,
+				low: response.low,
+				close: response.close,
+				name: date
+			};
+		});
 	}
 
-	static iexToHighchartVolume(iex: Stock.Chart.MultiDay.Response[]) : HighchartVolume[]
+	static iexToHighchartVolume(iex: Stock.Chart.MultiDay.Response[], ohlcSeries: HighchartOHLCSeries[]) : HighchartVolume[]
 	{
-		return iex.map((response): HighchartVolume => [
-			ChartComponent.iexDateToTimestamp(response.date, response.minute),
-			response.volume
-		]);
+		return iex.map((response, index): HighchartVolume => {
+			let date = ChartComponent.iexDateToReadableString(response.date, response.minute);
+			return {
+				x: Date.parse(date),
+				y: response.volume,
+				name: date,
+				color: ohlcSeries[index].open < ohlcSeries[index].close ? '#0f0' : '#f00'
+			};
+		});
 	}
 
 	updateOptions() {
+
+		// TODO: fix colors, it's not indexing correctly
+		let colors = this.ohlcSeries.map(ohlc => ohlc.open < ohlc.close ? '#0f0' : '#f00');
+
 		this.options = {
 
 			rangeSelector: {
@@ -113,6 +129,14 @@ export class ChartComponent {
 				split: true
 			},
 
+			plotOptions: {
+				series: {
+					// Disable error when data points are >1000
+					// Average tested around 1200
+					turboThreshold: 0
+				}
+			},
+
 			series: [{
 				type: 'candlestick',
 				name: this._symbol,
@@ -121,13 +145,26 @@ export class ChartComponent {
 				type: 'column',
 				name: 'Volume',
 				data: this.volume,
-				yAxis: 1
+				yAxis: 1,
+				colorByPoint: true,
+				colors: colors
 			}]
 		};
 	}
 }
 
+const Highcharts = require('highcharts/highstock');
+import darkUnicaTheme from './highchart-theme';
+
+// Overrides
+darkUnicaTheme.chart.backgroundColor.stops = [[0, '#080808'], [1, '#111']];
+darkUnicaTheme.chart.style.fontFamily = 'monospace';
+darkUnicaTheme.plotOptions.candlestick.lineColor = 'none';
+
+// Apply the theme
+Highcharts.setOptions(darkUnicaTheme);
+
 import { ChartModule } from 'angular2-highcharts';
 import metadata from 'app.module.metadata';
 metadata.declarations.push(ChartComponent);
-metadata.imports.push(ChartModule.forRoot(require('highcharts/highstock')));
+metadata.imports.push(ChartModule.forRoot(Highcharts));
