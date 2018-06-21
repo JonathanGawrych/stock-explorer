@@ -14,15 +14,14 @@ export class CompanySummaryComponent {
 	}
 
 	issueTypeToReadable(issueType: Stock.Company.IssueType) {
-		switch (issueType)
-		{
-		case 'ad': return 'American Depository Receipt (ADR’s)'
-		case 're': return 'Real Estate Investment Trust (REIT’s)'
-		case 'ce': return 'Closed end fund (Stock and Bond Fund)'
-		case 'si': return 'Secondary Issue'
-		case 'lp': return 'Limited Partnerships'
-		case 'cs': return 'Common Stock'
-		case 'et': return 'Exchange Traded Fund (ETF)'
+		switch (issueType) {
+		case 'ad': return 'American Depository Receipt (ADR’s)';
+		case 're': return 'Real Estate Investment Trust (REIT’s)';
+		case 'ce': return 'Closed end fund (Stock and Bond Fund)';
+		case 'si': return 'Secondary Issue';
+		case 'lp': return 'Limited Partnerships';
+		case 'cs': return 'Common Stock';
+		case 'et': return 'Exchange Traded Fund (ETF)';
 		default: return null;
 		}
 	}
