@@ -3,7 +3,8 @@
 	[(ngModel)]="input"
 	(input)="inputChange($event)"
 	(focus)="inputClear()"
-	(keyup.enter)="inputSubmit()" />
+	(keyup.enter)="inputSubmit()"
+	placeholder="Type the company name or symbol" />
 <datalist id="symbols">
 	<option *ngFor="let symbol of filteredSymbols | async" [value]="symbol.symbol">{{symbol.name | slice:0:30}}</option>
 </datalist>
