@@ -8,10 +8,10 @@ import { RefData } from 'iex-service';
 	styleUrls: ['./search.component.less']
 })
 export class SearchComponent implements OnInit {
-	private static symbols: Promise<RefData.Symbols.Response[]>;
-	private filteredSymbols: Promise<RefData.Symbols.Response[]>;
-	private input: string;
-	private top: RefData.Symbols.Response;
+	static symbols: Promise<RefData.Symbols.Response[]>;
+	filteredSymbols: Promise<RefData.Symbols.Response[]>;
+	input: string;
+	top: RefData.Symbols.Response;
 
 	constructor(private router: Router) {}
 

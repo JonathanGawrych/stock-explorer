@@ -8,7 +8,7 @@ import { Stock } from 'iex-service';
 	styleUrls: ['./company.component.less']
 })
 export class CompanyComponent implements OnInit {
-	private symbol: string;
+	symbol: string;
 
 	constructor(
 		private route: ActivatedRoute

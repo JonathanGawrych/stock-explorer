@@ -7,7 +7,7 @@ import { Stock } from 'iex-service';
 	styleUrls: ['./company-summary.component.less']
 })
 export class CompanySummaryComponent {
-	private company: Promise<Stock.Company.Response>;
+	company: Promise<Stock.Company.Response>;
 
 	@Input() set symbol(value: string) {
 		this.company = Stock.Company.get(value);

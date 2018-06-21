@@ -1,6 +1,6 @@
 <ul>
-	<li *ngFor="let symbol of constructor.SYMBOLS">
-		<span class="name">{{constructor.SHORT_NAMES[symbol]}}</span>
+	<li *ngFor="let symbol of SYMBOLS">
+		<span class="name">{{SHORT_NAMES[symbol]}}</span>
 		<span class="change-percent" [attr.percent]="(stats[symbol] | async)?.changePercent">{{
 			((stats[symbol] | async)?.changePercent | number : '1.2-2') || ' -.--'
 		}}</span>

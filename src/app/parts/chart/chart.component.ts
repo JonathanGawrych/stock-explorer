@@ -24,7 +24,7 @@ interface HighchartVolume {
 	styleUrls: ['./chart.component.less']
 })
 export class ChartComponent {
-	private options: Object;
+	options: Object;
 	private _symbol: string;
 	private ohlcSeries: HighchartOHLCSeries[];
 	private volume: HighchartVolume[];
