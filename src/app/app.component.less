@@ -1,0 +1,16 @@
+:host {
+	display: flex;
+	flex-flow: column;
+	width: 100%;
+	height: 100%;
+}
+
+app-nav {
+	height: 3em;
+}
+
+// not actually deep, but prevents
+// angular from isolating this element
+router-outlet + ::ng-deep * {
+	flex: 1;
+}
