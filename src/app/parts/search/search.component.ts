@@ -89,7 +89,6 @@ export class SearchComponent implements OnInit {
 	}
 
 	inputClear() {
-		console.log('here');
 		this.input = '';
 		this.filteredSymbols = Promise.resolve([]);
 	}
