@@ -1,9 +1,20 @@
-<p>symbol: {{(company | async)?.symbol}}</p>
-<p>companyName: {{(company | async)?.companyName}}</p>
-<p>exchange: {{(company | async)?.exchange}}</p>
-<p>industry: {{(company | async)?.industry}}</p>
-<p>website: {{(company | async)?.website}}</p>
-<p>description: {{(company | async)?.description}}</p>
-<p>CEO: {{(company | async)?.CEO}}</p>
-<p>issueType: {{(company | async)?.issueType}}</p>
-<p>sector: {{(company | async)?.sector}}</p>
+<div *ngIf="(company | async)">
+	<h1>
+		<span>{{(company | async)?.symbol}}</span>
+		<span>
+			<a [attr.href]="(company | async)?.website">{{(company | async)?.companyName}}</a>
+		</span>
+	</h1>
+	<h2>
+		<span>{{(company | async)?.exchange}}</span>
+		<span>{{issueTypeToReadable((company | async)?.issueType)}}</span>
+	</h2>
+	<h3>
+		<span>{{(company | async)?.industry}}</span>
+		<span>{{(company | async)?.sector}}</span>
+	</h3>
+	<p>
+		<span>{{(company | async)?.CEO}}</span>
+		<span>{{(company | async)?.description}}</span>
+	</p>
+</div>
