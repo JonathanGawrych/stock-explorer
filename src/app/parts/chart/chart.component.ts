@@ -2,20 +2,20 @@ import { Component, Input } from '@angular/core';
 import { Stock } from 'iex-service';
 
 interface HighchartOHLCSeries {
-	x: number, // timestamp
-	open: number,
-	high: number,
-	low: number,
-	close: number,
-	name?: string,
-	color?: string
+	x: number; // timestamp
+	open: number;
+	high: number;
+	low: number;
+	close: number;
+	name?: string;
+	color?: string;
 }
 
 interface HighchartVolume {
-	x: number, // timestamp
-	y: number, // volumn
-	name?: string,
-	color?: string
+	x: number; // timestamp
+	y: number; // volumn
+	name?: string;
+	color?: string;
 }
 
 @Component({
@@ -26,7 +26,7 @@ interface HighchartVolume {
 export class ChartComponent {
 	private options: Object;
 	private _symbol: string;
-	private ohlcSeries: HighchartOHLCSeries[]
+	private ohlcSeries: HighchartOHLCSeries[];
 	private volume: HighchartVolume[];
 
 	@Input() set symbol(value: string) {
@@ -46,19 +46,18 @@ export class ChartComponent {
 	static iexDateToReadableString(iexDate: string, iexMinute?: string) {
 		// convert from "YYYYMMDD", "HH:MM" to timestamp
 		if (iexMinute != null)
-			return iexDate.substring(0,4) + '-'
-			     + iexDate.substring(4,6) + '-'
-			     + iexDate.substring(6,8) + ' '
+			return iexDate.substring(0, 4) + '-'
+			     + iexDate.substring(4, 6) + '-'
+			     + iexDate.substring(6, 8) + ' '
 			     + iexMinute + ' EST';
 
 		// convert from "YYYY-MM-DD"
 		return iexDate + ' EST';
 	}
 
-	static iexToHighchartOHLC(iex: (Stock.Chart.MultiDay.Response | Stock.Chart.OneDay.Response)[]) : HighchartOHLCSeries[]
-	{
+	static iexToHighchartOHLC(iex: (Stock.Chart.MultiDay.Response | Stock.Chart.OneDay.Response)[]): HighchartOHLCSeries[] {
 		return iex.map((response): HighchartOHLCSeries => {
-			let date = ChartComponent.iexDateToReadableString(response.date, response.minute);
+			const date = ChartComponent.iexDateToReadableString(response.date, response.minute);
 			return {
 				x: Date.parse(date),
 				open: response.open,
@@ -70,10 +69,9 @@ export class ChartComponent {
 		});
 	}
 
-	static iexToHighchartVolume(iex: Stock.Chart.MultiDay.Response[], ohlcSeries: HighchartOHLCSeries[]) : HighchartVolume[]
-	{
+	static iexToHighchartVolume(iex: Stock.Chart.MultiDay.Response[], ohlcSeries: HighchartOHLCSeries[]): HighchartVolume[] {
 		return iex.map((response, index): HighchartVolume => {
-			let date = ChartComponent.iexDateToReadableString(response.date, response.minute);
+			const date = ChartComponent.iexDateToReadableString(response.date, response.minute);
 			return {
 				x: Date.parse(date),
 				y: response.volume,
@@ -86,7 +84,7 @@ export class ChartComponent {
 	updateOptions() {
 
 		// TODO: fix colors, it's not indexing correctly
-		let colors = this.ohlcSeries.map(ohlc => ohlc.open < ohlc.close ? '#0f0' : '#f00');
+		const colors = this.ohlcSeries.map(ohlc => ohlc.open < ohlc.close ? '#0f0' : '#f00');
 
 		this.options = {
 
@@ -141,7 +139,7 @@ export class ChartComponent {
 				type: 'candlestick',
 				name: this._symbol,
 				data: this.ohlcSeries
-			},{
+			}, {
 				type: 'column',
 				name: 'Volume',
 				data: this.volume,

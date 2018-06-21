@@ -2,7 +2,7 @@ import { core as Interfaces } from '@angular/compiler';
 
 interface Metadata extends Interfaces.NgModule {
 	// removes duplicates from the module metadata
-	clean():void;
+	clean(): void;
 }
 
 // create metadata with empty arrays so we just need to push
