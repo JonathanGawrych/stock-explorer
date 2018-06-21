@@ -13,12 +13,19 @@ export class BenchmarksComponent implements OnInit {
 		'QQQ', // NASDAQ-100
 	];
 
-	private stats: Promise<Stock.Previous.Response[]>;
+	private static SHORT_NAMES = {
+		'DIA': 'Dow Jones',
+		'SPY': 'S&P 500',
+		'QQQ': 'NASDAQ'
+	};
+
+	private stats: {[symbol: string]: Promise<Stock.Previous.Response>}[];
 
 	ngOnInit() {
-		this.stats = Promise.all(BenchmarksComponent.SYMBOLS.map(Stock.Previous.get));
+		this.stats = Object.assign({}, ...BenchmarksComponent.SYMBOLS.map(
+			symbol => ({ [symbol]: Stock.Previous.get(symbol) })
+		));
 	}
-
 }
 
 import metadata from 'app.module.metadata';
