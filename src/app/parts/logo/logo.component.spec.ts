@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LogoComponent } from './logo.component';
-import metadata from 'app.module.metadata';
 
 describe('LogoComponent', () => {
 	let component: LogoComponent;
@@ -8,7 +7,7 @@ describe('LogoComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: metadata.declarations
+			declarations: [LogoComponent]
 		})
 		.compileComponents();
 	}));

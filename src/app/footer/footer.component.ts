@@ -6,7 +6,3 @@ import { Component } from '@angular/core';
 	styleUrls: ['./footer.component.less']
 })
 export class FooterComponent {}
-
-import metadata from 'app.module.metadata';
-metadata.declarations.push(FooterComponent);
-

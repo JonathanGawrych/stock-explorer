@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+const Highcharts = require('highcharts/highstock');
+import { ChartModule } from 'angular2-highcharts';
 import { ChartComponent } from './chart.component';
-import metadata from 'app.module.metadata';
 
 describe('ChartComponent', () => {
 	let component: ChartComponent;
@@ -8,7 +9,8 @@ describe('ChartComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: metadata.declarations
+			imports: [ChartModule.forRoot(Highcharts)],
+			declarations: [ChartComponent]
 		})
 		.compileComponents();
 	}));

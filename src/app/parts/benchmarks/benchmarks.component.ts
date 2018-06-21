@@ -27,6 +27,3 @@ export class BenchmarksComponent implements OnInit {
 		));
 	}
 }
-
-import metadata from 'app.module.metadata';
-metadata.declarations.push(BenchmarksComponent);

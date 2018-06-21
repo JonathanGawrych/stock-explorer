@@ -161,8 +161,3 @@ darkUnicaTheme.plotOptions.candlestick.lineColor = 'none';
 
 // Apply the theme
 Highcharts.setOptions(darkUnicaTheme);
-
-import { ChartModule } from 'angular2-highcharts';
-import metadata from 'app.module.metadata';
-metadata.declarations.push(ChartComponent);
-metadata.imports.push(ChartModule.forRoot(Highcharts));

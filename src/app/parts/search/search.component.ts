@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RefData } from 'iex-service';
-import { CompanyComponent } from 'routes/company';
 
 @Component({
 	selector: 'app-search',
@@ -97,7 +96,7 @@ export class SearchComponent implements OnInit {
 		if (this.top == null)
 			return;
 
-		this.router.navigate(CompanyComponent.path(this.top.symbol));
+		this.router.navigate(['company', this.top.symbol]);
 	}
 
 	ngOnInit() {
@@ -110,8 +109,3 @@ export class SearchComponent implements OnInit {
 	}
 
 }
-
-import { FormsModule } from '@angular/forms';
-import metadata from 'app.module.metadata';
-metadata.declarations.push(SearchComponent);
-metadata.imports.push(FormsModule);

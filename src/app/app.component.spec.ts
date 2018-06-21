@@ -1,15 +1,26 @@
 import { TestBed, async } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import metadata from 'app.module.metadata';
+import { FooterComponent } from 'footer/';
+import { NavComponent } from 'nav/';
+import { LogoComponent, BenchmarksComponent, SearchComponent } from 'parts/';
 
 describe('AppComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			imports: [
+				FormsModule,
 				RouterTestingModule
 			],
-			declarations: metadata.declarations,
+			declarations: [
+				AppComponent,
+				NavComponent,
+				FooterComponent,
+				LogoComponent,
+				BenchmarksComponent,
+				SearchComponent
+			],
 		}).compileComponents();
 	}));
 	it('should create the app', async(() => {

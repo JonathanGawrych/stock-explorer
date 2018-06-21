@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { FormsModule } from '@angular/forms';
 import { NavComponent } from './nav.component';
-import metadata from 'app.module.metadata';
+import { LogoComponent, BenchmarksComponent, SearchComponent } from 'parts/';
 
 describe('NavComponent', () => {
 	let component: NavComponent;
@@ -8,7 +11,11 @@ describe('NavComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: metadata.declarations
+			imports: [
+				RouterTestingModule,
+				FormsModule
+			],
+			declarations: [NavComponent, LogoComponent, BenchmarksComponent, SearchComponent]
 		})
 		.compileComponents();
 	}));

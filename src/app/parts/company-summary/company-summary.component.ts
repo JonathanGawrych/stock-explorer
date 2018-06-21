@@ -26,6 +26,3 @@ export class CompanySummaryComponent {
 		}
 	}
 }
-
-import metadata from 'app.module.metadata';
-metadata.declarations.push(CompanySummaryComponent);

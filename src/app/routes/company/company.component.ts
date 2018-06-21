@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Stock } from 'iex-service';
-import 'parts/company-summary/';
-import 'parts/chart';
 
 @Component({
 	selector: 'app-company',
@@ -10,9 +8,6 @@ import 'parts/chart';
 	styleUrls: ['./company.component.less']
 })
 export class CompanyComponent implements OnInit {
-	static path = (symbol: string) => ['company', symbol];
-	static route: Route = { path: 'company/:symbol', component: CompanyComponent };
-
 	private symbol: string;
 
 	constructor(
@@ -24,8 +19,4 @@ export class CompanyComponent implements OnInit {
 			this.symbol = params.symbol;
 		});
 	}
-
 }
-
-import metadata from 'app.module.metadata';
-metadata.declarations.push(CompanyComponent);

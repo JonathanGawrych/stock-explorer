@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
 import { CompanySummaryComponent } from './company-summary.component';
-import metadata from 'app.module.metadata';
 
 describe('CompanySummaryComponent', () => {
 	let component: CompanySummaryComponent;
@@ -8,7 +9,9 @@ describe('CompanySummaryComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: metadata.declarations
+			imports: [RouterModule.forRoot([])],
+			declarations: [CompanySummaryComponent],
+			providers: [{provide: APP_BASE_HREF, useValue : '/' }]
 		})
 		.compileComponents();
 	}));

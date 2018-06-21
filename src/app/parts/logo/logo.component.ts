@@ -6,6 +6,3 @@ import { Component } from '@angular/core';
 	styleUrls: ['./logo.component.less']
 })
 export class LogoComponent {}
-
-import metadata from 'app.module.metadata';
-metadata.declarations.push(LogoComponent);

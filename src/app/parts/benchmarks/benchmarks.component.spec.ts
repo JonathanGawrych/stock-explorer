@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BenchmarksComponent } from './benchmarks.component';
-import metadata from 'app.module.metadata';
 
 describe('BenchmarksComponent', () => {
 	let component: BenchmarksComponent;
@@ -8,7 +7,7 @@ describe('BenchmarksComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: metadata.declarations
+			declarations: [BenchmarksComponent]
 		})
 		.compileComponents();
 	}));

@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import 'parts/logo/';
-import 'parts/benchmarks/';
-import 'parts/search/';
 
 @Component({
 	selector: 'app-nav',
@@ -9,6 +6,3 @@ import 'parts/search/';
 	styleUrls: ['./nav.component.less']
 })
 export class NavComponent {}
-
-import metadata from 'app.module.metadata';
-metadata.declarations.push(NavComponent);

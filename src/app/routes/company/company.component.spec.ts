@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+const Highcharts = require('highcharts/highstock');
+import { ChartModule } from 'angular2-highcharts';
 import { CompanyComponent } from './company.component';
-import metadata from 'app.module.metadata';
+import { CompanySummaryComponent, ChartComponent } from 'parts';
 
 describe('CompanyComponent', () => {
 	let component: CompanyComponent;
@@ -8,7 +11,11 @@ describe('CompanyComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: metadata.declarations
+			imports: [
+				ChartModule.forRoot(Highcharts),
+				RouterTestingModule
+			],
+			declarations: [CompanyComponent, CompanySummaryComponent, ChartComponent]
 		})
 		.compileComponents();
 	}));

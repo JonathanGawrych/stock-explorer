@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { routes } from 'routes/';
+import { CompanyComponent } from 'routes/company';
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot([
+		{ path: 'company/:symbol', component: CompanyComponent },
+		{ path: '', redirectTo: 'company/SPY', pathMatch: 'full' }
+	])],
 	exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-import metadata from 'app.module.metadata';
-metadata.imports.push(AppRoutingModule);
