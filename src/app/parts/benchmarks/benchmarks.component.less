@@ -1,0 +1,29 @@
+ul {
+	display: flex;
+}
+
+li {
+	margin-right: 1.5em;
+}
+
+.name {
+	margin-right: 0.5em;
+}
+
+.change-percent:after {
+	content: '%';
+}
+
+.change-percent[percent] {
+
+	&[percent^='-'] {
+		color: red;
+	}
+
+	&:not([percent^='-']) {
+		color: green;
+		&:before {
+			content: '+';
+		}
+	}
+}
