@@ -44,7 +44,7 @@ export class SearchComponent implements OnInit {
 		});
 	}
 
-	inputChange() {
+	inputChange($event) {
 		this.filteredSymbols = SearchComponent.symbols.then(symbols => {
 			// Search for the user's input
 			// https://stackoverflow.com/a/3561711/1248889
@@ -71,6 +71,18 @@ export class SearchComponent implements OnInit {
 
 			// Save the top result which will be used on navigating
 			this.top = filteredAndSorted[0];
+
+			// InputEvents are typing, pasting, etc.
+			// If we got into the input callback, but have a non-InputEvent then
+			// we have a datasource event. (generally generic "Event")
+			// IE/Edge InputEvent will be not be defined at all. They'll have to hit enter.
+			if (typeof InputEvent !== 'undefined' && !($event instanceof InputEvent)) {
+				// We'll immediately go there
+				this.inputSubmit();
+
+				// And remove focus
+				$event.target.blur();
+			}
 
 			return filteredAndSorted;
 		});
