@@ -79,7 +79,7 @@ export class ChartComponent {
 			},
 
 			title: {
-				text: this.symbol
+				text: this._symbol
 			},
 
 			yAxis: [{
@@ -115,13 +115,13 @@ export class ChartComponent {
 
 			series: [{
 				type: 'candlestick',
-				name: this.symbol,
+				name: this._symbol,
 				data: this.ohlcSeries
 			},{
 				type: 'column',
 				name: 'Volume',
 				data: this.volume,
-				yAxis: 1,
+				yAxis: 1
 			}]
 		};
 	}
